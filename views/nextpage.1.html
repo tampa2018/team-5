@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>Radical Partners</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 * {
@@ -10,8 +18,10 @@
 /* Add a background color with some padding */
 body {
     font-family: Arial;
+    font-size: 24px;
     padding: 20px;
     background:#808B96;
+    
 }
 
 /* Header/Blog Title */
@@ -47,8 +57,19 @@ body {
      padding: 20px;
      margin-top: 20px;
 }
+.card1 {
+     padding: 20px;
+     margin-right: 20px;
+     text-align: right;
+}
 .custom2{
   list-style-type: none;
+  float: left;
+}
+.custom21{
+  list-style-type: none;
+  float: right;
+  
 }
 /* Clear floats after the columns */
 .row:after {
@@ -74,22 +95,22 @@ body {
 }
 </style>
 </head>
-<body>
 
 <div class="header">
-  <img src="images/logo1.png" class="img-fluid" alt="Responsive image"
+  <img src="img/logo2.png" class="img-fluid" alt="Responsive image"
   style="
-  height: 300px;
-  width: 300px;
+  height: 10%;
+  width: 100%;
   background-color:#000033;">
 </div>
-<div class="fakeimg" style="height:200px;"><img src="images/map3.png" class="img-fluid" alt="Responsive image"
-style="
-height: 230px;
-width: 200px;
-"></div>
-
-<div class="row">
+<div class="fakeimg" style="height:200px;"><img src="img/logo1.png" class="img-fluid" alt="Responsive image"
+  style="
+  height: 230px;
+  width: 200px;
+  "></div>
+  
+  <body>
+<div class="container align-center">
   <div class="leftcolumn" id="insert">
     <script>
       
@@ -105,20 +126,34 @@ width: 200px;
       req.onload  = function() {
         function makeBlock(object){
           var divi = document.createElement("div");
+          divi.setAttribute("class", "align-center");
+          divi.setAttribute("style", "background-color: white");
           divi.className = "card";
           divi.id = object.id;
           var h2_1 = document.createElement("h2");
-          h2_1.innerHTML = 'Topic:' + object.topic;
+          if(object.topic2!=null){
+            h2_1.innerHTML = 'Topic: ' + object.topic + ' & ' + object.topic2;
+          }else{
+            h2_1.innerHTML = 'Topic: ' + object.topic;  
+          }
           var h5_1 = document.createElement("h2");
-          h5_1.innerHTML = object.fname + ' ' + object.lname;
+          h5_1.innerHTML = "Name: " + object.fname + ' ' + object.lname;
           var h5_2 = document.createElement("h2");
-          h5_2.innerHTML = 'Date Posted: ' + object.createdon;
+          h5_2.innerHTML = 'Date Posted: ' + object.createdon.substring(0, 10);
           var p = document.createElement("p");
           p.innerHTML = object.message;
           divi.appendChild(h2_1);
           divi.appendChild(h5_1);
           divi.appendChild(h5_2);
           divi.appendChild(p);
+          var button = document.createElement("button");
+          var im = document.createElement("img");
+          im.setAttribute("src", "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/twitter/154/thumbs-up-sign_1f44d.png");
+          im.setAttribute("height", "30px");
+          im.setAttribute("width", "30px");
+          button.appendChild(im);
+          button.setAttribute("style", "style=width:30px;height:35px;");
+          divi.appendChild(button);
           var currentDiv = document.getElementById(1);
           document.getElementById(1).appendChild(divi);
         }
@@ -134,8 +169,9 @@ width: 200px;
       <div id=1></div>
       </div>
     </div>
-  <div class="rightcolumn">
-    <div class="card">
+  <div class="container">
+    <div class="row">
+    <div class="card col">
       <h3>Topics</h3>
       <ul class=custom2>
 
@@ -151,19 +187,22 @@ width: 200px;
       <li><a href="#" class="btn btn-info" role="button" >Historic Preservation</a></li>
       <li><a href="#" class="btn btn-info" role="button" >Section 8</a></li>
     </div>
-    <div class="card">
+    <br>
+    <br>
+    <div class="card1 col">
       <h3>Archive</h3>
-      <ul class=custom2>
+      <ul class=custom21>
 
       <li class="active"><a href="#" class="btn btn-info" role="button">2018</a></li>
       <li><a href="#" class="btn btn-info" role="button" >2017</a></li>
       <li><a href="#" class="btn btn-info" role="button" >2016</a></li>
       <li><a href="#" class="btn btn-info" role="button" >2015</a></li>
       <li><a href="#" class="btn btn-info" role="button" >2014</a></li>
-
+    
+      </ul>
     </div>
   </div>
-</div>
+  </div>
 
 <div class="footer">
   <h2>Contact Us!</h2>
