@@ -5,6 +5,120 @@ var https = require('https')
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
 var GoogleStrategy = require('passport-google-oauth20').Strategy;
+var mongoose = require('mongoose');
+// Retrieve
+var MongoClient = require('mongodb').MongoClient;
+
+var Schema = mongoose.Schema;
+
+var userDataSchema = new Schema({
+  id: {type: Number, required: true, unique: true},
+  fb_id: Number,
+  google_id: Number,
+  fname: {type: String, required: true},
+  lname: {type: String, required: true},
+  email: {type: String, required: true},
+  phone: {type: Number, required: true},
+  user_type: {type: String, required: true},
+  createdon: {type: Date, required: true}
+});
+
+var postsSchema = new Schema({
+  id: {type: Number, required: true},
+  user_id: {type: Number, required: true},
+  message: {type: Number, required: true},
+  likes: {type: Number, required: true},
+  dislikes: {type:Number, required: true},
+  topics: {type: String, required: true},
+  reports: {type: Number, required: true},
+  post_type: {type: String, required: true},
+  createdOn: {type: Date, required: true}
+});
+
+var commentsSchema = new Schema({
+  id: {type: Number, required: true},
+  user_id: {type: Number, required: true},
+  post_id: {type: Number, required: true},
+  message: {type: Number, required: true},
+  likes: {type: Number, required: true},
+  dislikes: {type:Number, required: true},
+  reports: {type: Number, required: true},
+  post_type: {type: String, required: true},
+  createdOn: {type: Date, required: true}
+});
+
+var ratingSchema = new Schema({
+  id: {type: Number, required: true},
+  user_id: {type: Number, required: true},
+  post_id: {type: Number, required: true},
+  type: {type: String, required: true}
+})
+async function getUser(id){
+
+};
+
+async function getPost(id){
+
+};
+
+async function getComment(id){
+
+};
+
+async function getPostRating(id){
+  // rating = likes - dislikes
+};
+
+async function getCommentRating(id){
+  // rating = likes - dislikes
+};
+
+async function getUserLikes(id){
+
+};
+
+async function createUserFacebook(fb_id, fname, lname, email, phone, user_type, createdOn){
+
+};
+
+async function createUserGoogle(google_id, fname, lname, email, phone, user_type, createdOn){
+
+};
+
+async function createPost(user_id, message, topic){
+
+};
+
+async function createComment(user_id, post_id, message){
+
+};
+
+async function addLikePost(user_id, post_id){
+
+};
+
+async function addDislikePost(user_id, post_id){
+
+};
+
+async function addLikeComment(user_id, comment_id){
+
+};
+
+async function addDislikeComment(user_id, comment_id){
+
+};
+
+async function addReportPost(user_id, post_id){
+
+};
+
+async function addReportComment(user_id, post_id){
+
+};
+
+var UserData = mongoose.model('UserData', userDataSchema)
+
 
 
 var config = require("./config.json");
