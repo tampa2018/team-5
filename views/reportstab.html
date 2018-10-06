@@ -15,7 +15,6 @@
       font: 400 15px Lato, sans-serif;
       line-height: 1.8;
       color: #000000;
-    background-color: ##e1e1e1;
   }
   h2 {
       font-size: 24px;
@@ -30,18 +29,14 @@
       color: #303030;
       font-weight: 400;
       margin-bottom: 30px;
-  }  
+  }
   .jumbotron {
-      background-color: #000033;
       color: #fff;
       padding: 100px 25px;
       font-family: Lato, sans-serif;
   }
   .container-fluid {
       padding: 60px 50px;
-  }
-  .bg-grey {
-      background-color: #dbdbdb;
   }
   .logo-small {
       color: #000033;
@@ -82,7 +77,7 @@
       font-style: normal;
   }
   .panel {
-      border: 1px solid #000033; 
+      border: 1px solid #000033;
       border-radius:0 !important;
       transition: box-shadow 0.5s;
   }
@@ -158,7 +153,7 @@
     0% {
       opacity: 0;
       transform: translateY(70%);
-    } 
+    }
     100% {
       opacity: 1;
       transform: translateY(0%);
@@ -168,7 +163,7 @@
     0% {
       opacity: 0;
       -webkit-transform: translateY(70%);
-    } 
+    }
     100% {
       opacity: 1;
       -webkit-transform: translateY(0%);
@@ -190,7 +185,6 @@
     }
   }
   </style>
-
 
 
 
@@ -230,7 +224,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
 /* Add Animation */
 @-webkit-keyframes animatetop {
-    from {top:-300px; opacity:0} 
+    from {top:-300px; opacity:0}
     to {top:0; opacity:1}
 }
 
@@ -277,7 +271,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
+        <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="#myPage">Radical Partners</a>
     </div>
@@ -314,6 +308,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
     overflow: auto; /* Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+
 }
 
 /* Modal Content */
@@ -333,7 +328,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
 /* Add Animation */
 @-webkit-keyframes animatetop {
-    from {top:-300px; opacity:0} 
+    from {top:-300px; opacity:0}
     to {top:0; opacity:1}
 }
 
@@ -363,7 +358,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
     color: white;
 }
 
-.modal-body {padding: 2px 16px;}
+.modal-body {padding: 0px 0px margin:0;}
 
 .modal-footer {
     padding: 2px 16px;
@@ -372,27 +367,31 @@ body {font-family: Arial, Helvetica, sans-serif;}
 }
 </style>
 </head>
-<body>
+<body style= 'padding-left:0; padding-right:0; margin-left:0; margin-right:0' >
 
-
-
+<li style="background-image: url(img/slider_1.jpg); margin-right:0px;padding-right: 0px;">
 <!-- Container (Title, centered) -->
-<div id="jumbotron" class="container-fluid bg-grey" style="padding-top:100px; padding-bottom:100px">
-  <div class="col-sm-3">
+<div id="jumbotron" class="container-fluid bg-grey" style="padding-top:100px; padding-bottom:100px; margin-right:0px;padding-right: 0px; margin-left: 0; padding-left:0px">
+  <div class="col-sm-3" style="margin-right:0px;padding-right: 0px;">
   </div>
-  <div class="col-sm-6">
-  <h1 style="text-align">100+ Great Ideas in the Making</h1>
+  <div class="col-sm-6" style="margin-right:0px;padding-right: 0px;">
+  <h1 style="text-align-center;font-weight: bold;font-size:300%;">100+ Great Ideas in</h1>
+  <h1 style="text-align-center;font-weight: bold;font-size:300%;">&emsp; &ensp; the Making</h1>
   </div>
   <div class="col-sm-3">
   </div>
 </div>
+</li>
+
 
 <div class="row">
     <!-- Container (Recent Report) -->
     <div class="col-sm-10">
 
       <div id="jumbotron" class="container-fluid bg-grey" style="padding-bottom:100px">
+        <div id="map"></div>
         <h2> Chicago, Illinois; June 17-21, 2018 </h2>
+        <div id="piechart"></div>
         <h2> Campaign #1: Accessibility in the City </h2>
         <h2> </h2>
 
@@ -400,7 +399,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
     </div>
 
     <!-- Container (Side Bar - Articles & Archives) -->
-    <div class="col-sm-2" > 
+    <div class="col-sm-2" >
         <div id="jumbotron" class="container-fluid bg-grey" style="padding-bottom:100px">
         <h5> Articles ... </h5>
         <h5> Archive ... </h5>
@@ -418,13 +417,13 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
 
 <div class="jumbotron text-center">
-  <h1>About Us</h1> 
-  <p>WE ACCELERATE POSITIVE CHANGE</p> 
+  <h1>About Us</h1>
+  <p>WE ACCELERATE POSITIVE CHANGE</p>
   <P>WE MOBILIZE THE COMMUNITY TO TACKLE SSUES THAT MATTER</P>
   <P>WE SUPPORT OUTSTANDING LOCAL CHANGEMAKERS</P>
   <P>WE BUILD ADVENTURES THAT ADDRESS ISSUES THAT MATTER</P>
   <P>WE CONNECT PEOPLE WITH DIFFERENT TYPES OF POWER</P>
-  
+
 </div>
 
 
@@ -473,13 +472,13 @@ $(document).ready(function(){
       $('html, body').animate({
         scrollTop: $(hash).offset().top
       }, 900, function(){
-   
+
         // Add hash (#) to URL when done scrolling (default click behavior)
         window.location.hash = hash;
       });
     } // End if
   });
-  
+
   $(window).scroll(function() {
     $(".slideanim").each(function(){
       var pos = $(this).offset().top;
@@ -492,6 +491,71 @@ $(document).ready(function(){
   });
 })
 </script>
+
+<!-- Style the map -->
+<style>
+
+#map {
+  width: 240px;
+  height: 240px;
+  /*-webkit-filter: grayscale(100%);  Safari 6.0 - 9.0 */
+  /* filter: grayscale(100%); */
+  border-radius: 6px;
+  -moz-border-radius: 100px;
+  -khtml-border-radius: 200px;
+  -webkit-border-radius: 200px;
+}
+
+</style>
+
+<!-- Google Maps Script -->
+<script>
+function myMap() {
+    var mapCanvas = document.getElementById("map");
+    var mapOptions = {
+        center: new google.maps.LatLng(41.9, -87.6),
+        zoom: 10,
+        zoomControl: false,
+        mapTypeControl: false,
+        scaleControl: false,
+        streetViewControl: false,
+        rotateControl: false,
+        fullscreenControl: false
+    };
+    var map = new google.maps.Map(mapCanvas, mapOptions);
+}
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBd7IhK_QcuroCXVDErx7NJk4vloEzs64A&callback=myMap"></script>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script type="text/javascript">
+// Load google charts
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+// Draw the chart and set the chart values
+function drawChart() {
+  var data = google.visualization.arrayToDataTable([
+  ['Task', 'Hours per Day'],
+  ['Work', 8],
+  ['Friends', 2],
+  ['Eat', 2],
+  ['TV', 2],
+  ['Gym', 2],
+  ['Sleep', 8]
+]);
+
+  // Optional; add a title and set the width and height of the chart
+  var options = {'title':'', 'width':550, 'height':400};
+
+  // Display the chart inside the <div> element with id="piechart"
+  var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+  chart.draw(data, options);
+}
+</script>
+
 
 </body>
 </html>
