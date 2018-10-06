@@ -24,15 +24,18 @@ async function getUser(id){
 };
 
 async function getPost(id){
-
+  var post = await postsSchema.findByID(id);
+  return await post
 };
 
 async function getComment(id){
-
+  var comment = await postsSchema.findByID(id);
+  return await comment
 };
 
 async function getPostRating(id){
   // rating = likes - dislikes
+  var likes = await postsSchema.find("likes");
 };
 
 async function getCommentRating(id){
@@ -220,9 +223,12 @@ var server = https.createServer(certOptions, app).listen(port, async () => {
 
 //Facebook Auth
 app.get('/auth/facebook', passport.authenticate('facebook'));
-app.get('/auth/facebook/callback',
-passport.authenticate('facebook', { successRedirect: '/',
-failureRedirect: '/login' }));
+app.get('/auth/facebook/callback', async (req, res) => {
+  passport.authenticate('facebook', { successRedirect: '/',
+  failureRedirect: '/login' }, async (req, res) => {
+    console.log(req)
+  });
+})
 
 //Google Auth
 app.get('/auth/google',
