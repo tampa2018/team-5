@@ -21,7 +21,7 @@ var app = express();
 passport.use(new FacebookStrategy({
     clientID: FACEBOOK_APP_ID,
     clientSecret: FACEBOOK_APP_SECRET,
-    callbackURL: "http://www.example.com/auth/facebook/callback"
+    callbackURL: "https://localhost:3000/auth/facebook/callback"
   },
   function(accessToken, refreshToken, profile, done) {
     User.findOrCreate(function(err, user) {
