@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie-edge">
+
+    <title>CSS GRIDS</title>
+<!--link to Bootstrap--->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<style>
+  ul{
+    list-style: none;
+  }
+  .wrapper{
+    display:grid;
+    grid-template-columns: 40% 30%;
+
+    grid-column-gap: 15em;
+    grid-row-gap:1em;
+
+    grid-gap:1em;
+  }
+  .wrapper> div{
+    background: #eee;
+    padding:1em;
+  }
+
+
+  body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  button{
+    border: none;
+  }
+  .custom1{
+    width: 300px;
+   border: 25px;
+   padding: 25px;
+   margin: 25px;
+  }
+
+  .custom2{
+    margin: 25px;
+    grid-gap: 1em;
+  }
+</style>
+
+
+</head>
+<body>
+    <div class=custom1 style="font-family: Montserrat; background:#999999;">
+      <ul class=custom2><h1>Topics</h1>
+
+      <li class="active"><a href="#" class="btn btn-info" role="button" style="background-color:#000033;color:#fff;">Zoning</a></li>
+      <li><a href="#" class="btn btn-info" role="button" style="background-color:#000033;color:#fff;">Funding</a></li>
+      <li><a href="#" class="btn btn-info" role="button" style="background-color:#000033;color:#fff;">Mixed Income Housing</a></li>
+      <li><a href="#" class="btn btn-info" role="button" style="background-color:#000033;color:#fff;">Rent Control</a></li>
+      <li><a href="#" class="btn btn-info" role="button" style="background-color:#000033;color:#fff;">State Preemption</a></li>
+      <li><a href="#" class="btn btn-info" role="button" style="background-color:#000033;color:#fff;">Utilities</a></li>
+      <li><a href="#" class="btn btn-info" role="button" style="background-color:#000033;color:#fff;">Inspections</a></li>
+      <li><a href="#" class="btn btn-info" role="button" style="background-color:#000033;color:#fff;">Renovations</a></li>
+      <li><a href="#" class="btn btn-info" role="button" style="background-color:#000033;color:#fff;">Landlords</a></li>
+      <li><a href="#" class="btn btn-info" role="button" style="background-color:#000033;color:#fff;">Historic Preservation</a></li>
+      <li><a href="#" class="btn btn-info" role="button" style="background-color:#000033;color:#fff;">Section 8</a></li>
+    </div>
+
+
+</body>
+
+</html>
