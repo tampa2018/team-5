@@ -1,6 +1,6 @@
-# Project Title
+# New Web Platform for Radical Partners Non-Profit 
 
-One Paragraph of project description goes here
+  This stand-alone tool provides an improved user interface for community members to communicate and discuss ideas to create meaningful legislative and social change.  Users contribute to the website by logging in through Facebook or Google, which allows them to network and invite others to the discussion without the complications of directly using a Facebook group.  Users then click on specific topics that interest them and can view posted ideas in a featured, popular, or recent order. Data about posts - including likes, dislikes, reports, and topics - are added in real-time to a database. This aggregated data can then be used to efficiently create reports after the 5 day campaign.  
 
 ## Getting Started
 
@@ -11,7 +11,8 @@ These instructions will get you a copy of the project up and running on your loc
 What things you need to install the software and how to install them
 
 ```
-Give examples
+- Express JS Web framework built with no JS
+- 
 ```
 
 ### Installing
@@ -58,7 +59,7 @@ Add additional notes about how to deploy this on a live system
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
+* [ExpressJS] (https://expressjs.com) - The web framework used
 * [Maven](https://maven.apache.org/) - Dependency Management
 * [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
 
@@ -82,7 +83,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+* JP Morgan Chase Mentors 
+* Radical Partners 
 
