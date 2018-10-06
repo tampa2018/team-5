@@ -8,7 +8,7 @@ var GoogleStrategy = require('passport-google-oauth20').Strategy;
 var pg = require('pg')
 var config = require("./config.json");
 var db_config = require("./db_config.json")
-
+var bodyParser = require('body-parser');
 const { Pool } = require('pg');
 
 // pools will use environment variables
@@ -124,6 +124,14 @@ const callbackURL = config.callbackURL;
 const port = config.port;
 var app = express();
 
+
+app.use( bodyParser.json() );       // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+  extended: true
+})); 
+app.use(express.json());       // to support JSON-encoded bodies
+app.use(express.urlencoded())
+
 passport.use(new FacebookStrategy({
     clientID: FACEBOOK_APP_ID,
     clientSecret: FACEBOOK_APP_SECRET,
@@ -211,7 +219,7 @@ app.get('/news.html', async (req, res) => {
 
 //Report
 app.get('/report.html', async (req, res) => {
-  res.sendFile(path.join(__dirname + '/views/news.html'));
+  res.sendFile(path.join(__dirname + '/views/reportstab.html'));
 });
 
 //Server Create
@@ -239,3 +247,72 @@ app.get('/auth/google/callback',
     // Successful authentication, redirect home.
     res.redirect('/');
   });
+
+app.get('/addPost', async(req,res) =>{
+  res.redirect('https://localhost:3000/nextpage.1.html');
+})
+
+app.get('/login.html', async(req,res) =>{
+  res.sendFile(path.join(__dirname + '/login.html'));
+})
+
+app.get('/homepage2.html', async(req,res) =>{
+  res.sendFile(path.join(__dirname + '/views/homepage2.html'));
+})
+
+app.get('/loggedout.html', async(req, res) => {
+  res.sendFile(path.join(__dirname + '/views/loggedout.html'));
+})
+app.get('/nextpage.1.html', async (req, res) =>{
+  res.sendFile(path.join(__dirname + '/views/nextpage.1.html'));
+})
+app.post('/addPost', async(req, res) => {
+  console.log(req.body);
+  var user_id = 17; 
+  var fname = "Sebastian";
+  var lname = "Bertreand";
+  var topic = req.body.topic;
+  var message = req.body.comments;
+  await pool.query('INSERT INTO codeforgood.posts(user_id, topic, message) VALUES( $1, $2, $3);', 
+  [user_id, topic, message]);
+  res.redirect('/addPost');
+})
+
+
+
+app.get('/img/logo1.png', async(req, res) => {
+  res.sendFile(path.join(__dirname + '/views/img/logo1.png'));
+})
+
+app.get('/img/logo2.png', async(req, res) => {
+  res.sendFile(path.join(__dirname + '/views/img/logo2.png'));
+})
+app.get('/images/logo1.png', async(req, res) => {
+  res.sendFile(path.join(__dirname + '/images/logo1.png'));
+})
+app.get('/images/NYC.jpg', async(req, res) => {
+  res.sendFile(path.join(__dirname + '/images/NYC.jpg'));
+})
+
+app.get('/images/logo2.png', async(req, res) => {
+  res.sendFile(path.join(__dirname + '/images/logo2.png'));
+})
+app.get('/img/Rebecca.jpg', async(req, res) => {
+  res.sendFile(path.join(__dirname + '/views/img/Rebecca.jpg'));
+})
+
+app.get('/img/Sarah.jpg', async(req, res) => {
+  res.sendFile(path.join(__dirname + '/views/img/Sarah.jpg'));
+})
+
+app.get('/img/Alia.jpg', async(req, res) => {
+  res.sendFile(path.join(__dirname + '/views/img/Alia.jpg'));
+})
+
+app.get('/img/Joan.jpg', async(req, res) => {
+  res.sendFile(path.join(__dirname + '/views/img/Joan.jpg'));
+})
+
+app.get('/img/slider_1.jpg', async(req, res) => {
+  res.sendFile(path.join(__dirname + '/views/img/slider_1.jpg'));
+})

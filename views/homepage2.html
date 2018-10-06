@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <!-- Theme Made By www.w3schools.com - No Copyright -->
-  <title>Bootstrap Theme Company Page</title>
+  <title>Radical Partners</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -14,7 +14,8 @@
   body {
       font: 400 15px Lato, sans-serif;
       line-height: 1.8;
-      color: #818181;
+      color: #000000;
+	  background-color: #D4AC0D
   }
   h2 {
       font-size: 24px;
@@ -40,7 +41,7 @@
       padding: 60px 50px;
   }
   .bg-grey {
-      background-color: #f6f6f6;
+      background-color: #D4AC0D;
   }
   .logo-small {
       color: #000033;
@@ -282,10 +283,10 @@ body {font-family: Arial, Helvetica, sans-serif;}
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#about">ABOUT</a></li>
-        <li><a href="#feed">FEED</a></li>
-        <li><a href="#reports">REPORTS</a></li>
-        <li><a href="#logout">LOG OUT</a></li>
+        <li><a href="./aboutus.html">ABOUT</a></li>
+        <li><a href="./nextpage.1.html">FEED</a></li>
+        <li><a href="./reportstab.html">REPORTS</a></li>
+        <li><a href="./loggedout.html">LOG OUT</a></li>
       </ul>
     </div>
   </div>
@@ -392,7 +393,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
   <!-- Modal content -->
   <div class="modal-content">
-    <form>
+    <form method="POST" action="https://localhost:3000/addPost">
       <div class="modal-header">
         <span class="close">&times;</span>
         <h2>Participate in 100 GREAT IDEAS and Express Your Own Thoughts Below!</h2>
@@ -400,19 +401,27 @@ body {font-family: Arial, Helvetica, sans-serif;}
           <h5>Topics: </h5>
         </div>
         <div class="col-sm-1">
-             <select class="mdb-select">
-                 <option value="1">Topic 1</option>
-                 <option value="2">Topic 2</option>
-                 <option value="3">Topic 3</option>
-                 <option value="4">Topic 4</option>
-                 <option value="5">Topic 5</option>
-                 <option value="6">Topic 6</option>
+            <font color="black">
+             <select name="topic" class="mdb-select">
+                 <option value="Housing">Housing</option>
+                 <option value="Water">Water</option>
+                 <option value="Mobility">Mobility</option>
+                 <option value="Funding">Funding</option>
+                 <option value="Rent Control">Rent Control</option>
+                 <option value="Zoning">Zoning</option>
                  <li class="divider"></li>
-                 <option value="7">Other</option>
+                 <option id="other" value="">Other</option>
             </select>
+        </font>
+        <script>
+        function getOtherVal(){
+            var s = document.getElementById("other");
+            s.value = document.getElementById("getValue").value;
+        }
+        </script>
         </div>
       <div class="col-sm-10">
-        <textarea class="form-control" id="comments" placeholder="Other: " rows="1">
+        <textarea id="getValue" class="form-control" id="comments" placeholder="Other: " rows="1">
         </textarea>
       </div>
     </div>
@@ -425,7 +434,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
         <button class="btn btn-primary pull-right" type="submit">Cancel</button>
       </div>
       <div class="col-sm-1">
-        <button class="btn btn-primary pull-right" type="submit">Post</button>
+        <button onclick="getOtherVal();" class="btn btn-primary pull-right" type="submit">Post</button>
         <br>
       </div>
     </div>
@@ -467,16 +476,13 @@ window.onclick = function(event) {
 
 
 <div class="jumbotron text-center">
-  <h1>Company</h1> 
-  <p>We specialize in blablabla</p> 
-  <form>
-    <div class="input-group">
-      <input type="email" class="form-control" size="50" placeholder="What is your idea?" required>
-      <div class="input-group-btn">
-        <button type="button" class="btn btn-danger">Post</button>
-      </div>
-    </div>
-  </form>
+  <h1>About Us</h1> 
+  <p>WE ACCELERATE POSITIVE CHANGE</p> 
+  <P>WE MOBILIZE THE COMMUNITY TO TACKLE SSUES THAT MATTER</P>
+  <P>WE SUPPORT OUTSTANDING LOCAL CHANGEMAKERS</P>
+  <P>WE BUILD ADVENTURES THAT ADDRESS ISSUES THAT MATTER</P>
+  <P>WE CONNECT PEOPLE WITH DIFFERENT TYPES OF POWER</P>
+  
 </div>
 
 
@@ -488,23 +494,7 @@ window.onclick = function(event) {
   <div class="row">
     <div class="col-sm-5">
       <p>Contact us and we'll get back to you within 24 hours.</p>
-      <p><span class="glyphicon glyphicon-map-marker"></span> Chicago, US</p>
-      <p><span class="glyphicon glyphicon-phone"></span> +00 1515151515</p>
-      <p><span class="glyphicon glyphicon-envelope"></span> myemail@something.com</p>
-    </div>
-    <div class="col-sm-7 slideanim">
-      <div class="row">
-        <div class="col-sm-6 form-group">
-          <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
-        </div>
-        <div class="col-sm-6 form-group">
-          <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
-        </div>
-      </div>
-      <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea><br>
-      <div class="row">
-        <div class="col-sm-12 form-group">
-          <button class="btn btn-default pull-right" type="submit">Send</button>
+      <p>You can reach us at our Facebook Page or Twitter with your questions and concerns.
         </div>
       </div>
     </div>
@@ -513,26 +503,15 @@ window.onclick = function(event) {
 
 <!-- Add Google Maps -->
 <div id="googleMap" style="height:400px;width:100%;"></div>
-<script>
-function myMap() {
-var myCenter = new google.maps.LatLng(41.878114, -87.629798);
-var mapProp = {center:myCenter, zoom:12, scrollwheel:false, draggable:false, mapTypeId:google.maps.MapTypeId.ROADMAP};
-var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-var marker = new google.maps.Marker({position:myCenter});
-marker.setMap(map);
-}
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap"></script>
-<!--
-To use this code on your website, get a free API key from Google.
-Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
--->
 
 <footer class="container-fluid text-center">
   <a href="#myPage" title="To Top">
     <span class="glyphicon glyphicon-chevron-up"></span>
   </a>
-  <p>Bootstrap Theme Made By <a href="https://www.w3schools.com" title="Visit w3schools">www.w3schools.com</a></p>
+  <p>Code for Good JP Morgan Chase Team 5 Project.</p>
+  <!-- href
+  <a href="https://www.w3schools.com" title="Visit w3schools">www.w3schools.com</a>
+  --->
 </footer>
 
 <script>
@@ -574,5 +553,4 @@ $(document).ready(function(){
 
 </body>
 </html>
-
 
