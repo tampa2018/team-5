@@ -57,8 +57,8 @@ Add additional notes about how to deploy this on a live system
 
 ## Built With
 
-* [ExpressJS] (https://expressjs.com) - The web framework used
-* [CSS Bootstrap] (https://getbootstrap.com/docs/3.3/css/) - Web development used 
+* [ExpressJS](https://expressjs.com) - The web framework used
+* [CSS Bootstrap](https://getbootstrap.com/docs/3.3/css/) - Web development used 
 * [PostgreSQL](https://www.postgresql.org/docs/9.5/static/sql-copy.html) - Database used
 
 ## Contributing
