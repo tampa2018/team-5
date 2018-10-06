@@ -216,17 +216,35 @@
 
 <!-- Container (Contact Section) -->
 <div id="post" class="container-fluid bg-grey" style="padding-top:200px; padding-bottom:200px">
-  <h2 class="btn btn-default center">POST YOUR THOUGHTS ON OUR CAMPAIGN</h2>
-  <div class="row">
+  <h2 class="well well-lg text-center">POST YOUR THOUGHTS ON OUR CAMPAIGNS</h2>
     <div class="col-sm-2">
     </div>
     <div class="col-sm-8 slideanim">
+        <div class="col-sm-3">
+            <h3 class="row pull-left">Topic: </h3>
+        </div>
+        <div class="col-sm-9">
+            <div class="dropdown pull-left">
+                <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">Select
+                <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li>Topic 1</li>
+                    <li>Topic 2</li>
+                    <li>Topic 3</li>
+                    <li>Topic 4</li>
+                    <li>Topic 5</li>
+                    <li>Topic 6</li>
+                    <li class="divider"></li>
+                    <li>Other</li>
+                </ul>
+            </div>
+        </div>
         <textarea class="form-control" id="comments" name="comments" placeholder="Click here to post your idea!" rows="3"></textarea><br>
         <div class="col-sm-11">
-            <button class="btn btn-default pull-right" type="submit">Cancel</button>
+            <button class="btn btn-primary pull-right" type="submit">Cancel</button>
         </div>
         <div class="col-sm-1">
-            <button class="btn btn-default pull-right" type="submit">Post</button>
+            <button class="btn btn-primary pull-right" type="submit">Post</button>
         </div>
     </div>
     <div class="col-sm-2">
