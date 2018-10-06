@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+    box-sizing: border-box;
+}
+
+/* Add a background color with some padding */
+body {
+    font-family: Arial;
+    padding: 20px;
+    background:#808B96;
+}
+
+/* Header/Blog Title */
+.header {
+    padding: 30px;
+    font-size: 40px;
+    text-align: center;
+    background-color:#000033;
+}
+
+/* Create two unequal columns that floats next to each other */
+/* Left column */
+.leftcolumn {
+    float: left;
+    width: 75%;
+}
+
+/* Right column */
+.rightcolumn {
+    float: left;
+    width: 25%;
+    padding-left: 20px;
+}
+
+/* Fake image */
+.fakeimg {
+    width: 100%;
+    padding: 20px;
+}
+
+/* Add a card effect for articles */
+.card {
+     padding: 20px;
+     margin-top: 20px;
+}
+.custom2{
+  list-style-type: none;
+}
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Footer */
+.footer {
+    padding: 20px;
+    text-align: center;
+    background: #ddd;
+    margin-top: 20px;
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 800px) {
+    .leftcolumn, .rightcolumn {
+        width: 100%;
+        padding: 0;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <img src="images/logo1.png" class="img-fluid" alt="Responsive image"
+  style="
+  height: 300px;
+  width: 300px;
+  background-color:#000033;">
+</div>
+<div class="fakeimg" style="height:200px;"><img src="images/map3.png" class="img-fluid" alt="Responsive image"
+style="
+height: 230px;
+width: 200px;
+"></div>
+
+<div class="row">
+  <div class="leftcolumn" id="insert">
+    <script>
+      
+      async function getjson(){
+        var request = new XMLHttpRequest();
+        var jsonData = await request.open();
+        return jsonData;
+      }
+            
+      var req = new XMLHttpRequest();
+      req.responseType = 'json';
+      req.open('GET', 'https://localhost:3000/allPosts', true);
+      req.onload  = function() {
+        function makeBlock(object){
+          var divi = document.createElement("div");
+          divi.className = "card";
+          divi.id = object.id;
+          var h2_1 = document.createElement("h2");
+          h2_1.innerHTML = 'Topic:' + object.topic;
+          var h5_1 = document.createElement("h2");
+          h5_1.innerHTML = object.fname + ' ' + object.lname;
+          var h5_2 = document.createElement("h2");
+          h5_2.innerHTML = 'Date Posted: ' + object.createdon;
+          var p = document.createElement("p");
+          p.innerHTML = object.message;
+          divi.appendChild(h2_1);
+          divi.appendChild(h5_1);
+          divi.appendChild(h5_2);
+          divi.appendChild(p);
+          var currentDiv = document.getElementById(1);
+          document.getElementById(1).appendChild(divi);
+        }
+        var jsonResponse = req.response;
+        console.log(jsonResponse);    
+        for(var i=0; i<jsonResponse.length; i++){
+         makeBlock(jsonResponse[i]);
+        }
+      };
+      req.send(null);
+      
+      </script> 
+      <div id=1></div>
+      </div>
+    </div>
+  <div class="rightcolumn">
+    <div class="card">
+      <h3>Topics</h3>
+      <ul class=custom2>
+
+      <li class="active"><a href="#" class="btn btn-info" role="button">Zoning</a></li>
+      <li><a href="#" class="btn btn-info" role="button" >Funding</a></li>
+      <li><a href="#" class="btn btn-info" role="button" >Mixed Income Housing</a></li>
+      <li><a href="#" class="btn btn-info" role="button" >Rent Control</a></li>
+      <li><a href="#" class="btn btn-info" role="button" >State Preemption</a></li>
+      <li><a href="#" class="btn btn-info" role="button" >Utilities</a></li>
+      <li><a href="#" class="btn btn-info" role="button" >Inspections</a></li>
+      <li><a href="#" class="btn btn-info" role="button" >Renovations</a></li>
+      <li><a href="#" class="btn btn-info" role="button" >Landlords</a></li>
+      <li><a href="#" class="btn btn-info" role="button" >Historic Preservation</a></li>
+      <li><a href="#" class="btn btn-info" role="button" >Section 8</a></li>
+    </div>
+    <div class="card">
+      <h3>Archive</h3>
+      <ul class=custom2>
+
+      <li class="active"><a href="#" class="btn btn-info" role="button">2018</a></li>
+      <li><a href="#" class="btn btn-info" role="button" >2017</a></li>
+      <li><a href="#" class="btn btn-info" role="button" >2016</a></li>
+      <li><a href="#" class="btn btn-info" role="button" >2015</a></li>
+      <li><a href="#" class="btn btn-info" role="button" >2014</a></li>
+
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <h2>Contact Us!</h2>
+  <h5>Email us at info@radicalpartners.net with any inquiries about our leadership development programs, massive community engagements or anything else!</h5>
+</div>
+
+</body>
+</html>

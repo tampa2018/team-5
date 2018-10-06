@@ -5,57 +5,22 @@ var https = require('https')
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
 var GoogleStrategy = require('passport-google-oauth20').Strategy;
-var mongoose = require('mongoose');
-// Retrieve
-var MongoClient = require('mongodb').MongoClient;
+var pg = require('pg')
+var config = require("./config.json");
+var db_config = require("./db_config.json")
 
-var Schema = mongoose.Schema;
+const { Pool } = require('pg');
 
-var userDataSchema = new Schema({
-  id: {type: Number, required: true},
-  fb_id: Number,
-  google_id: Number,
-  fname: {type: String, required: true},
-  lname: {type: String, required: true},
-  email: {type: String, required: true},
-  phone: {type: String, required: true},
-  user_type: {type: String, required: true},
-  createdOn: {type: String, required: true}
-});
+// pools will use environment variables
+// for connection information
+const pool = new Pool(db_config);
 
-var postsSchema = new Schema({
-  id: {type: Number, required: true},
-  user_id: {type: Number, required: true},
-  message: {type: Number, required: true},
-  likes: {type: Number, required: true},
-  dislikes: {type:Number, required: true},
-  topics: {type: String, required: true},
-  reports: {type: Number, required: true},
-  post_type: {type: String, required: true},
-  createdOn: {type: Date, required: true}
-});
 
-var commentsSchema = new Schema({
-  id: {type: Number, required: true},
-  user_id: {type: Number, required: true},
-  post_id: {type: Number, required: true},
-  message: {type: Number, required: true},
-  likes: {type: Number, required: true},
-  dislikes: {type:Number, required: true},
-  reports: {type: Number, required: true},
-  post_type: {type: String, required: true},
-  createdOn: {type: Date, required: true}
-});
 
-var ratingSchema = new Schema({
-  id: {type: Number, required: true},
-  user_id: {type: Number, required: true},
-  post_id: {type: Number, required: true},
-  type: {type: String, required: true}
-})
 async function getUser(id){
-  var data = await userModel.findByID(id);
-  return await data;
+  var response = await pool.query('SELECT * FROM users WHERE id = $1', [id]);
+  var rows = response.rows;
+  return rows;
 };
 
 async function getPost(id){
@@ -78,58 +43,53 @@ async function getUserLikes(id){
 
 };
 
-async function createUserFacebook(id, fb_id, fname, lname, email, phone, user_type, createdOn){
-  var userInit = {
-    "id": id,
-    "fb_id": fb_id,
-    "fname": fname,
-    "lname": lname,
-    "email": email,
-    "phone": phone,
-    "user_type": user_type,
-    "createdOn": createdOn
-  }
-  var user = new UserData(userInit);
-  user.save();
+async function getAllPosts(){
+  var result = await pool.query('SELECT * FROM codeforgood.posts INNER JOIN codeforgood.users ON users.id = posts.user_id;')
+  var rows = result.rows;
+  return rows;
+}
+
+async function createUserFacebook(fb_id, fname, lname, email, phone, user_type){
+  await pool.query(`INSERT INTO codeforgood.users(fb_id, google_id, fname, lname, email, user_type) 
+  VALUES($1, $2, $3, $4, $5, $6, $7, $8);`,
+  [fb_id, null, fname, lname, zipcode, email, phone, user_type]);
 };
 
-async function createUserGoogle(id, google_id, fname, lname, email, phone, user_type, createdOn){
-  var userInit = {
-    "id": id,
-    "google_id": google_id,
-    "fname": fname,
-    "lname": lname,
-    "email": email,
-    "phone": phone,
-    "user_type": user_type,
-    "createdOn": createdOn
-  }
-  var user = new UserData(userInit);
-  user.save();
+async function createUserGoogle(google_id, fname, lname, email, phone, user_type){
+  await pool.query(`INSERT INTO codeforgood.users(fb_id, google_id, fname, lname, email, user_type) 
+  VALUES($1, $2, $3, $4, $5, $6, $7, $8);`,
+  [fb_id, null, fname, lname, zipcode, email, phone, user_type, createdOn]);
 };
 
 async function createPost(user_id, message, topic){
-
+  await pool.query(`INSERT INTO codeforgood.posts(user_id, message, topic)
+  VALUES($1, $2, $3)`, [user_id, message, topic]);
 };
 
 async function createComment(user_id, post_id, message){
-
+  await pool.query(`INSERT INTO codeforgood.comments(post_id, user_id, message)
+  VALUES($1, $2, $3)`, [post_id, user_id, message]);
 };
 
 async function addLikePost(user_id, post_id){
-
+  var currentLikes = await pool.query(`select likes from codeforgood.posts where post_id=$1;`, [post_id]);
+  await pool.query('UPDATE codeforgood.posts SET likes = $1;', [currentLikes+1]);
+  await pool.query('INSERT INTO codeforgood.ratings(user_id, post_id, type) VALUES()')
 };
 
 async function addDislikePost(user_id, post_id){
-
+  var currentDislikes = await pool.query(`select dislikes from codeforgood.posts where post_id=$1;`, [post_id]);
+  await pool.query('UPDATE codeforgood.posts SET dislikes = $1;', [currentDislikes+1]);
 };
 
 async function addLikeComment(user_id, comment_id){
-
+  var currentLikes = await pool.query(`select likes from codeforgood.comments where comment_id=$1;`, [comment_id]);
+  await pool.query('UPDATE codeforgood.comments SET likes = $1;', [currentLikes+1]);
 };
 
 async function addDislikeComment(user_id, comment_id){
-
+  var currentDislikes = await pool.query(`select dislikes from codeforgood.posts where comment_id=$1;`, [comment_id]);
+  await pool.query('UPDATE codeforgood.comments SET dislikes = $1;', [currentDislikes+1]);
 };
 
 async function addReportPost(user_id, post_id){
@@ -140,11 +100,13 @@ async function addReportComment(user_id, post_id){
 
 };
 
-var UserData = mongoose.model('UserData', userDataSchema)
+async function getMaxId(){
+
+};
 
 
 
-var config = require("./config.json");
+
 
 var certOptions = {
   key: fs.readFileSync(path.resolve('build/cert/server.key')),
@@ -186,19 +148,53 @@ passport.use(new GoogleStrategy({
 
 //Home Page
 app.get('/', async (req, res) => {
-  var id=1,
-  fb_id= 23,
-  fname= "Fat",
-  lname= "Smelly",
-  email= "sticky@none.com",
-  phone= "5155145555",
-  user_type= "admin",
-  createdOn= "09/10/18"
-  await createUserFacebook(id, fb_id, fname, lname, email, phone, user_type, createdOn);
+  console.log(await pool.query('SELECT * FROM codeforgood.rating;'));
   console.log('WE MADE IT');
   res.sendFile(path.join(__dirname + '/views/home.html')
 );
 })
+
+app.get('/allPosts', async(req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.json(await getAllPosts());
+})
+//User Functions
+
+//FB User Create
+app.get('/fb_account/create', async (req, res) => {
+  console.log('request recieved');
+  var userInit = {
+    "fb_id": 1,
+    "fname": 'jam',
+    "lname": 'cav',
+    "email": 'k@c.com',
+    "phone": 12345,
+    "user_type": 'admin',
+  }
+  res.send('hello');
+  //var newUser = await createUserFacebook(id, fb_id, fname, lname, email, phone, user_type, createdOn);
+  //console.log('New Facebook User Created: ');
+  //console.log(newUser);
+  //res.send('working');
+});
+
+//Google User Create
+app.post('/google_account/create', async (req, res) => {
+  var id = await (getMaxId() + 1);
+  var fb_id= req.query.fb_id;
+  var fname= req.query.fname;
+  var lname= req.query.lname;
+  var email= req.query.email;
+  var phone= req.query.phone;
+  var user_type= req.query.user_type;
+  var createdOn= req.query.createdOn;
+  var newUser = await createUserFacebook(id, fb_id, fname, lname, email, phone, user_type, createdOn);
+  console.log('New Facebook User Created: ');
+  console.log(newUser);
+});
+
+
 
 //About Us
 app.get('/aboutus.html', async (req, res) => {
