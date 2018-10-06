@@ -12,15 +12,15 @@ var MongoClient = require('mongodb').MongoClient;
 var Schema = mongoose.Schema;
 
 var userDataSchema = new Schema({
-  id: {type: Number, required: true, unique: true},
+  id: {type: Number, required: true},
   fb_id: Number,
   google_id: Number,
   fname: {type: String, required: true},
   lname: {type: String, required: true},
   email: {type: String, required: true},
-  phone: {type: Number, required: true},
+  phone: {type: String, required: true},
   user_type: {type: String, required: true},
-  createdon: {type: Date, required: true}
+  createdOn: {type: String, required: true}
 });
 
 var postsSchema = new Schema({
@@ -92,8 +92,9 @@ async function createUserFacebook(fb_id, fname, lname, email, phone, user_type, 
   user.save();
 };
 
-async function createUserGoogle(google_id, fname, lname, email, phone, user_type, createdOn){
+async function createUserGoogle(id, google_id, fname, lname, email, phone, user_type, createdOn){
   var userInit = {
+    "id": id,
     "google_id": google_id,
     "fname": fname,
     "lname": lname,
@@ -184,7 +185,16 @@ passport.use(new GoogleStrategy({
 
 //Home Page
 app.get('/', async (req, res) => {
-    res.sendFile(path.join(__dirname + '/views/home.html')
+  var id=1,
+  fb_id= 23,
+  fname= "Fat",
+  lname= "Smelly",
+  email= "sticky@none.com",
+  phone= "5155145555",
+  user_type= "admin",
+  createdOn= "09/10/18"
+  await createUserFacebook(id, fb_id, fname, lname, email, phone, user_type, createdOn);
+  res.sendFile(path.join(__dirname + '/views/home.html')
 );
 })
 
