@@ -316,3 +316,17 @@ app.get('/img/Joan.jpg', async(req, res) => {
 app.get('/img/slider_1.jpg', async(req, res) => {
   res.sendFile(path.join(__dirname + '/views/img/slider_1.jpg'));
 })
+
+app.get('/img/housecloud.png', async(req, res) => {
+  res.sendFile(path.join(__dirname + '/views/img/housecloud.png'));
+})
+
+app.get('/img/campaign5.png', async(req, res) => {
+  res.sendFile(path.join(__dirname + '/views/img/campaign5.png'));
+})
+app.get('/img/campaign1.png', async(req, res) => {
+  res.sendFile(path.join(__dirname + '/views/img/campaign1.png'));
+})
+app.get('/img/campaign2.png', async(req, res) => {
+  res.sendFile(path.join(__dirname + '/views/img/campaign2.png'));
+})
