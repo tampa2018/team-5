@@ -10,8 +10,8 @@ var GoogleStrategy = require('passport-google-oauth20').Strategy;
 var config = require("./config.json");
 
 var certOptions = {
-  key: fs.readFileSync(path.resolve('./server.key')),
-  cert: fs.readFileSync(path.resolve('./server.crt'))
+  key: fs.readFileSync(path.resolve('build/cert/server.key')),
+  cert: fs.readFileSync(path.resolve('build/cert/server.crt'))
 }
 
 const FACEBOOK_APP_ID = config.appId;
