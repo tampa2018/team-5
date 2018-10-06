@@ -189,16 +189,6 @@ passport.use(new GoogleStrategy({
 
 //Home Page
 app.get('/', async (req, res) => {
-  var id=1,
-  fb_id= 23,
-  fname= "Fat",
-  lname= "Smelly",
-  email= "sticky@none.com",
-  phone= "5155145555",
-  user_type= "admin",
-  createdOn= "09/10/18"
-  await createUserFacebook(id, fb_id, fname, lname, email, phone, user_type, createdOn);
-  console.log(getUser(id));
   res.sendFile(path.join(__dirname + '/views/home.html')
 );
 })
@@ -227,9 +217,12 @@ var server = https.createServer(certOptions, app).listen(port, async () => {
 
 //Facebook Auth
 app.get('/auth/facebook', passport.authenticate('facebook'));
-app.get('/auth/facebook/callback',
-passport.authenticate('facebook', { successRedirect: '/',
-failureRedirect: '/login' }));
+app.get('/auth/facebook/callback', async (req, res) => {
+  passport.authenticate('facebook', { successRedirect: '/',
+  failureRedirect: '/login' }, async (req, res) => {
+    console.log(req)
+  });
+})
 
 //Google Auth
 app.get('/auth/google',
