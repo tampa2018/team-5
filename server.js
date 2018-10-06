@@ -47,25 +47,43 @@ passport.use(new GoogleStrategy({
   }
 ));
 
-
+//Home Page
 app.get('/', async (req, res) => {
     res.sendFile(path.join(__dirname + '/views/home.html')
 );
 })
 
+//About Us
+app.get('/aboutus.html', async (req, res) => {
+  res.sendFile(path.join(__dirname + '/views/aboutus.html'));
+});
+
+//News
+app.get('/news.html', async (req, res) => {
+  res.sendFile(path.join(__dirname + '/views/news.html'));
+});
+
+//Report
+app.get('/report.html', async (req, res) => {
+  res.sendFile(path.join(__dirname + '/views/news.html'));
+});
+
+//Server Create
 var server = https.createServer(certOptions, app).listen(port, async () => {
     console.log(`Example app listening on port ${port}!`)
 })
 
+
+
+//Facebook Auth
 app.get('/auth/facebook', passport.authenticate('facebook'));
-
-app.get('/auth/google',
-  passport.authenticate('google', { scope: ['profile'] }));
-
 app.get('/auth/facebook/callback',
-  passport.authenticate('facebook', { successRedirect: '/',
-                                      failureRedirect: '/login' }));
+passport.authenticate('facebook', { successRedirect: '/',
+failureRedirect: '/login' }));
 
+//Google Auth
+app.get('/auth/google',
+passport.authenticate('google', { scope: ['profile'] }));
 app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/login' }),
   function(req, res) {
