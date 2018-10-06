@@ -59,15 +59,18 @@ async function getUser(id){
 };
 
 async function getPost(id){
-
+  var post = await postsSchema.findByID(id);
+  return await post
 };
 
 async function getComment(id){
-
+  var comment = await postsSchema.findByID(id);
+  return await comment
 };
 
 async function getPostRating(id){
   // rating = likes - dislikes
+  var likes = await postsSchema.find("likes");
 };
 
 async function getCommentRating(id){
@@ -195,7 +198,7 @@ app.get('/', async (req, res) => {
   user_type= "admin",
   createdOn= "09/10/18"
   await createUserFacebook(id, fb_id, fname, lname, email, phone, user_type, createdOn);
-  console.log('WE MADE IT');
+  console.log(getUser(id));
   res.sendFile(path.join(__dirname + '/views/home.html')
 );
 })
