@@ -78,8 +78,9 @@ async function getUserLikes(id){
 
 };
 
-async function createUserFacebook(fb_id, fname, lname, email, phone, user_type, createdOn){
+async function createUserFacebook(id, fb_id, fname, lname, email, phone, user_type, createdOn){
   var userInit = {
+    "id": id,
     "fb_id": fb_id,
     "fname": fname,
     "lname": lname,
@@ -194,6 +195,7 @@ app.get('/', async (req, res) => {
   user_type= "admin",
   createdOn= "09/10/18"
   await createUserFacebook(id, fb_id, fname, lname, email, phone, user_type, createdOn);
+  console.log('WE MADE IT');
   res.sendFile(path.join(__dirname + '/views/home.html')
 );
 })
