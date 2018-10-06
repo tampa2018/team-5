@@ -54,7 +54,8 @@ var ratingSchema = new Schema({
   type: {type: String, required: true}
 })
 async function getUser(id){
-
+  var data = await userModel.findByID(id);
+  return await data;
 };
 
 async function getPost(id){
@@ -78,11 +79,31 @@ async function getUserLikes(id){
 };
 
 async function createUserFacebook(fb_id, fname, lname, email, phone, user_type, createdOn){
-
+  var userInit = {
+    "fb_id": fb_id,
+    "fname": fname,
+    "lname": lname,
+    "email": email,
+    "phone": phone,
+    "user_type": user_type,
+    "createdOn": createdOn
+  }
+  var user = new UserData(userInit);
+  user.save();
 };
 
 async function createUserGoogle(google_id, fname, lname, email, phone, user_type, createdOn){
-
+  var userInit = {
+    "google_id": google_id,
+    "fname": fname,
+    "lname": lname,
+    "email": email,
+    "phone": phone,
+    "user_type": user_type,
+    "createdOn": createdOn
+  }
+  var user = new UserData(userInit);
+  user.save();
 };
 
 async function createPost(user_id, message, topic){
